@@ -8,6 +8,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'nelsyeung/twig.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'jlanzarotta/bufexplorer'
 
 " Initialize plugin system
 call plug#end()
@@ -70,7 +71,9 @@ nnoremap <leader>- :vertical resize -5<CR>
 nnoremap <leader>ps :Rg<CR>
 
 " jump to definition
-nnoremap <leader>gr :tag<CR>
+nmap <leader>gd <Plug>(coc-definition)
+" jump to references
+nmap <leader>gr <Plug>(coc-references) 
 
 " fzf
 nnoremap <C-p> :GFiles <CR>
