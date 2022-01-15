@@ -16,6 +16,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'lewis6991/gitsigns.nvim'
 
@@ -25,12 +26,12 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-path'
-Plug 'L3MON4D3/LuaSnip'
-Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'rafamadriz/friendly-snippets'
 
 call plug#end()
 
-lua require('teatek')
+lua require("lsp")
+lua require("treesitter")
 
 set noshowmode
 
@@ -97,3 +98,5 @@ nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 " copie jusqu'en haut
 nnoremap <leader>Y gg"+yGj
+
+
