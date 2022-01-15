@@ -30,6 +30,7 @@ Plug 'saadparwaiz1/cmp_luasnip'
 
 call plug#end()
 
+lua require('teatek')
 
 set noshowmode
 
