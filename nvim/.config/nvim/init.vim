@@ -11,22 +11,29 @@ Plug 'romainl/vim-qf'
 Plug 'navarasu/onedark.nvim' 
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
+Plug 'lewis6991/gitsigns.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-vinegar'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'lewis6991/gitsigns.nvim'
 
+" completion and snippets
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'rafamadriz/friendly-snippets'
+
+" java eclipse like
+Plug 'mfussenegger/nvim-jdtls'
 
 call plug#end()
 
@@ -62,8 +69,6 @@ if executable('rg')
 endif
 
 let mapleader = " "
-let g:ctrlp_use_caching = 0
-let g:netrw_banner = 0
 
 " remap
 
@@ -83,6 +88,7 @@ vnoremap J :m '>+1<CR>gv=gv
 
 " Save a file as root (,W)
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
+
 " explorer auto
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30 <CR>
 
@@ -98,5 +104,3 @@ nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 " copie jusqu'en haut
 nnoremap <leader>Y gg"+yGj
-
-
