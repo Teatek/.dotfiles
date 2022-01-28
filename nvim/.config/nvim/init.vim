@@ -44,6 +44,7 @@ lua require("treesitter")
 
 set noshowmode
 
+set mouse=a
 set guicursor=
 set noerrorbells
 set relativenumber
@@ -106,3 +107,8 @@ nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 " copie jusqu'en haut
 nnoremap <leader>Y gg"+yGj
+
+" make and quickfixlist
+
+autocmd Filetype cs setlocal makeprg=dotnet
+autocmd Filetype cs setlocal errorformat=\ %#%f(%l\\\,%c):\ %m

@@ -2,6 +2,8 @@ local cmp = require('cmp')
 local nvim_lsp = require('lspconfig')
 local lspkind = require('lspkind')
 
+vim.opt.completeopt={menu, menuone, noselect}
+
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -36,22 +38,28 @@ cmp.setup({
   }
 })
 
--- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline('/', {
-  sources = {
-    { name = 'buffer' }
-  }
-})
-
 -- servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local nvim_lsp = require('lspconfig')
-local servers = { 'clangd', 'pyright', 'gdscript', 'eslint', 'jdtls', 'html', 'cssls', 'emmet_ls', 'intelephense' }
+local servers = { 'clangd', 'pyright', 'gdscript', 'eslint', 'jdtls', 'html', 'cssls', 'emmet_ls', 'intelephense', 'csharp_ls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
       -- Add capabilities
       capabilities = capabilities,
+      on_attach = function()
+        vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer=0})
+        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {buffer=0})
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer=0})
+        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer=0})
+        vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, {buffer=0})
+        vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, {buffer=0})
+        vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, {buffer=0})
+        vim.keymap.set("n", "<leader>dl", "<Cmd>Telescope diagnostics<CR>", {buffer=0})
+        vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {buffer=0})
+        vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {buffer=0})
+        vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, {buffer=0})
+      end,
   }
 end
