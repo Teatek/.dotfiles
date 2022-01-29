@@ -45,6 +45,7 @@ lua require("treesitter")
 set noshowmode
 
 set mouse=a
+set clipboard=unnamedplus
 set guicursor=
 set noerrorbells
 set relativenumber

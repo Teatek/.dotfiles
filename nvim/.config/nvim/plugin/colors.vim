@@ -9,14 +9,15 @@ let g:lightline = {
   \   'gitbranch': 'FugitiveHead'
   \ },
   \ }
+set t_Co=256
 colorscheme onedark
 syntax on
 " terminal
-highlight LineNr guifg=Black guibg=Grey gui=bold
+highlight LineNr guifg=White
 highlight LineNrAbove guifg=Grey
 highlight LineNrBelow guifg=Grey 
 " gui
-highlight LineNr guifg=Black guibg=Grey gui=bold
+highlight LineNr guifg=White
 highlight LineNrAbove guifg=Grey
 highlight LineNrBelow guifg=Grey 
 
