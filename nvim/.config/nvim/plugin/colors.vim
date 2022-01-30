@@ -1,4 +1,6 @@
-let g:onedark_transparent_background = v:true
+let g:onedark_config = {
+  \ 'transparent': v:true,
+\}
 let g:lightline = {
   \ 'colorscheme': 'one',
   \ 'active': {
