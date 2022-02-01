@@ -1,5 +1,6 @@
 let g:onedark_config = {
-  \ 'transparent': v:true,
+  \ 'transparent': v:false,
+  \ 'style': 'cool',
 \}
 let g:lightline = {
   \ 'colorscheme': 'one',
