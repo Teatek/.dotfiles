@@ -27,15 +27,20 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-vsnip'
-Plug 'hrsh7th/vim-vsnip'
 Plug 'onsails/lspkind-nvim'
+
 " snippets
-Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'L3MON4D3/LuaSnip'
+Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'rafamadriz/friendly-snippets'
+
+" prettier
+Plug 'sbdchd/neoformat'
 
 " java eclipse like
 Plug 'mfussenegger/nvim-jdtls'
+" c# textdoc/definition
+Plug 'Hoffs/omnisharp-extended-lsp.nvim'
 
 call plug#end()
 
@@ -44,15 +49,18 @@ lua require("treesitter")
 
 set noshowmode
 
-set mouse=a
 set clipboard=unnamedplus
 set guicursor=
 set noerrorbells
 set relativenumber
 set number
 set hidden
+set softtabstop=4
+set tabstop=4
+set shiftwidth=4
+set expandtab
 set smartindent
-set nowrap
+set wrap
 
 set nohlsearch
 set scrolloff=8
@@ -66,6 +74,8 @@ set listchars=tab:>─,eol:↲
 set colorcolumn=100
 if executable('rg')
     let g:rg_derive_root='true'
+    set grepprg=rg\ --vimgrep\ --no-heading
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
 let mapleader = " "
