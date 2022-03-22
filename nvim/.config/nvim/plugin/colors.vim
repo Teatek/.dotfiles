@@ -1,7 +1,13 @@
 let g:onedark_config = {
   \ 'transparent': v:false,
   \ 'style': 'cool',
+  \ 'toggle_style_key': '<leader>ts',
+  \ 'toggle_style_list' : [ 
+    \ 'cool',
+    \ 'light'
+  \ ], 
 \}
+"list toggle dark, darker, deep, warm, warmer 
 let g:lightline = {
   \ 'colorscheme': 'one',
   \ 'active': {

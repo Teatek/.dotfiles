@@ -25,6 +25,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'onsails/lspkind-nvim'
@@ -51,6 +52,7 @@ set noshowmode
 
 set clipboard=unnamedplus
 set guicursor=
+set laststatus=3
 set noerrorbells
 set relativenumber
 set number
@@ -101,6 +103,10 @@ noremap <leader>W :w !sudo tee % > /dev/null<CR>
 
 " explorer auto
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30 <CR>
+
+" resize
+nnoremap <leader>+ :resize +5<CR>
+nnoremap <leader>- :resize -5<CR>
 
 " telescope
 nnoremap <C-p> <Cmd>Telescope find_files <CR>
