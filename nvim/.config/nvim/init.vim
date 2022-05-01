@@ -52,7 +52,7 @@ set noshowmode
 
 set clipboard=unnamedplus
 set guicursor=
-set laststatus=3
+set laststatus=2
 set noerrorbells
 set relativenumber
 set number
