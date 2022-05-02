@@ -35,6 +35,10 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'rafamadriz/friendly-snippets'
 
+" debugger
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+
 " prettier
 Plug 'sbdchd/neoformat'
 
@@ -47,10 +51,12 @@ call plug#end()
 
 lua require("lsp")
 lua require("treesitter")
+lua require("dap")
 
 set noshowmode
 
 set clipboard=unnamedplus
+set mouse=a
 set guicursor=
 set laststatus=2
 set noerrorbells
@@ -62,7 +68,7 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set smartindent
-set wrap
+set nowrap
 
 set nohlsearch
 set scrolloff=8
@@ -120,6 +126,12 @@ nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 " copie jusqu'en haut
 nnoremap <leader>Y gg"+yGj
+
+" terminal on windows
+if has("win32")
+    tnoremap <Esc> <C-\><C-n>
+    set shell=bash
+endif
 
 " make and quickfixlist
 
