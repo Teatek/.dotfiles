@@ -152,7 +152,7 @@ function! IndentFoldWithImp()
     return 1
   else
     return indent(v:lnum) / &shiftwidth
-    endif
+  endif
 endfunction
 
 autocmd FileType vim setlocal foldmethod=marker
