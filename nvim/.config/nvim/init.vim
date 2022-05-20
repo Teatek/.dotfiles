@@ -47,11 +47,15 @@ Plug 'mfussenegger/nvim-jdtls'
 " c# textdoc/definition
 Plug 'Hoffs/omnisharp-extended-lsp.nvim'
 
+" rest api
+Plug 'NTBBloodbath/rest.nvim'
+
 call plug#end()
 
 lua require("lsp")
 lua require("treesitter")
-lua require("dap")
+lua require("daps")
+lua require("rest")
 
 set noshowmode
 
@@ -69,6 +73,8 @@ set shiftwidth=4
 set expandtab
 set smartindent
 set nowrap
+set foldmethod=indent
+set foldlevel=99
 
 set nohlsearch
 set scrolloff=8
@@ -92,9 +98,10 @@ let mapleader = " "
 
 " vim-qf
 nmap <Home> <Plug>(qf_qf_previous)
-nmap <End>  <Plug>(qf_qf_next)
+nmap <End> <Plug>(qf_qf_next)
 
 inoremap <C-c> <esc>
+tnoremap <Esc> <C-\><C-n>
 
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
@@ -108,7 +115,7 @@ vnoremap J :m '>+1<CR>gv=gv
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
 
 " explorer auto
-nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30 <CR>
+nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 25 <CR>
 
 " resize
 nnoremap <leader>+ :resize +5<CR>
@@ -120,20 +127,40 @@ nnoremap <leader>ps <Cmd>Telescope live_grep<CR>
 nnoremap <leader>b <Cmd>Telescope buffers<CR>
 
 " delete wihout changing what's in memory (register)
-" vnoremap <leader>p "_dP
+vnoremap <leader>p "_dP
 " yank pour le systeme
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 " copie jusqu'en haut
 nnoremap <leader>Y gg"+yGj
 
-" terminal on windows
+" windows
 if has("win32")
-    tnoremap <Esc> <C-\><C-n>
+    nnoremap <C-z> <nop>
     set shell=bash
+    set shellcmdflag=-c
 endif
 
-" make and quickfixlist
+" folding
+function! IndentFoldWithImp()
+  let thisline = getline(v:lnum)
+  if thisline =~? '\v^\s*$'
+    return '-1'
+  endif
 
-autocmd Filetype cs setlocal makeprg=dotnet
+  if thisline =~ '^import.*$'
+    return 1
+  else
+    return indent(v:lnum) / &shiftwidth
+    endif
+endfunction
+
+autocmd FileType vim setlocal foldmethod=marker
+autocmd FileType javascript setlocal foldmethod=expr
+autocmd FileType java setlocal foldmethod=expr
+autocmd FileType javascript setlocal foldexpr=IndentFoldWithImp()
+autocmd FileType java setlocal foldexpr=IndentFoldWithImp()
+
+" quickfix list
+
 autocmd Filetype cs setlocal errorformat=\ %#%f(%l\\\,%c):\ %m

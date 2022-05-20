@@ -1,5 +1,6 @@
 " set light or dark to change global theme (also affects statusline) (need to restart vim everytime it needs to be changed)
 set background=dark
+" set background=light
 let g:onedark_config = {
   \ 'transparent': v:false,
   \ 'style': 'cool',

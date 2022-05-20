@@ -28,7 +28,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local nvim_lsp = require('lspconfig')
-local servers = { 'clangd', 'pyright', 'gdscript', 'tsserver', 'jdtls', 'html', 'cssls', 'emmet_ls', 'intelephense' }
+local servers = { 'clangd', 'pyright', 'gdscript', 'tsserver', 'html', 'cssls', 'emmet_ls', 'intelephense', 'gopls' }
 -- common settings
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
@@ -71,50 +71,59 @@ cmp.setup({
     ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
     ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
     ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    ['<CR>'] = cmp.mapping.confirm({ select = false }),
     ['<C-e>'] = cmp.mapping.abort(),
     ['<C-i>'] = cmp.mapping.close(),
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      if luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      else
+        fallback()
+      end
+    end, { "i", "s"}),
     ["<C-n>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
       elseif has_words_before() then
         cmp.complete()
       else
         fallback()
       end
     end, { "i", "s" }),
-
-    ["<C-p>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+      if luasnip.jumpable(-1) then
         luasnip.jump(-1)
       else
         fallback()
       end
+    end, { "i", "s"}),
+    ["<C-p>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      else
+        fallback()
+      end
     end, { "i", "s" }),  },
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'nvim_lua' },
-    { name = 'path' },
-    { name = 'luasnip' },
-    { name = 'buffer', keyword_length = 5 },
-  }),
-  formatting = {
-    format = lspkind.cmp_format({
-      with_text = true, -- do not show text alongside icons
-      maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-      menu = {
-        buffer = "[buf]",
-        nvim_lsp = "[LSP]",
-        path = "[path]",
-        luasnip = "[snip]"
-      }
-    })
-  }
-})
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'nvim_lua' },
+      { name = 'path' },
+      { name = 'luasnip' },
+      { name = 'buffer', keyword_length = 5 },
+    }),
+    formatting = {
+      format = lspkind.cmp_format({
+        with_text = true,
+        maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+        menu = {
+          buffer = "[buf]",
+          nvim_lsp = "[LSP]",
+          path = "[path]",
+          luasnip = "[snip]"
+        }
+      })
+    }
+  })
 
--- friendly snippets
-require("luasnip.loaders.from_vscode").load()
+  -- friendly snippets
+  require("luasnip.loaders.from_vscode").load()

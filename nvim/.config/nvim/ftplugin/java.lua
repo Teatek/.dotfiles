@@ -1,16 +1,39 @@
+local home = os.getenv('HOME')
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 
-local workspace_dir = '~/projects/javap/' .. project_name
---
--- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
+local workspace_dir = home .. '/projects/javap/' .. project_name
+
+local on_attach = function(client, bufnr)
+  require('jdtls').setup_dap({ hotcodereplace = 'auto' })
+  require('jdtls.setup').add_commands()
+  
+-- mapping
+-- lsp
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer=0})
+  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {buffer=0})
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer=0})
+  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer=0})
+  vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, {buffer=0})
+  vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, {buffer=0})
+  vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, {buffer=0})
+  vim.keymap.set("n", "<leader>dl", "<Cmd>Telescope diagnostics<CR>", {buffer=0})
+  vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {buffer=0})
+  vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {buffer=0})
+  vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, {buffer=0})
+  -- nvim-dap
+  vim.keymap.set("n", "<leader>tc", "<Cmd>lua require'jdtls'.test_class()<CR>", {buffer=0})
+  vim.keymap.set("n", "<leader>tnm", "<Cmd>lua require'jdtls'.test_nearest_method()<CR>", {buffer=0})
+
+end
+
 local config = {
   -- The command that starts the language server
   -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
-
-  -- 💀
   cmd = {
+
+    -- 💀
     'java', -- or '/path/to/java11_or_newer/bin/java'
-            -- depends on if `java` is in your $PATH env variable and if it points to the right version.
+    -- depends on if `java` is in your $PATH env variable and if it points to the right version.
 
     '-Declipse.application=org.eclipse.jdt.ls.core.id1',
     '-Dosgi.bundles.defaultStartLevel=4',
@@ -23,17 +46,17 @@ local config = {
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
 
     -- 💀
-    '-jar', '~/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
-         -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
-         -- Must point to the                                                     Change this to
-         -- eclipse.jdt.ls installation                                           the actual version
+    '-jar', home .. '/.local/share/nvim/lsp_servers/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
+    -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
+    -- Must point to the                                                     Change this to
+    -- eclipse.jdt.ls installation                                           the actual version
 
 
     -- 💀
-    '-configuration', '~/jdtls/config_linux',
-                    -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        ^^^^^^
-                    -- Must point to the                      Change to one of `linux`, `win` or `mac`
-                    -- eclipse.jdt.ls installation            Depending on your system.
+    '-configuration', home .. '/.local/share/nvim/lsp_servers/jdtls/config_win',
+    -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        ^^^^^^
+    -- Must point to the                      Change to one of `linux`, `win` or `mac`
+    -- eclipse.jdt.ls installation            Depending on your system.
 
 
     -- 💀
@@ -51,8 +74,58 @@ local config = {
   -- for a list of options
   settings = {
     java = {
+      signatureHelp = { enabled = true };
+      contentProvider = { preferred = 'fernflower' };
+      completion = {
+        favoriteStaticMembers = {
+          "org.hamcrest.MatcherAssert.assertThat",
+          "org.hamcrest.Matchers.*",
+          "org.hamcrest.CoreMatchers.*",
+          "org.junit.jupiter.api.Assertions.*",
+          "java.util.Objects.requireNonNull",
+          "java.util.Objects.requireNonNullElse",
+          "org.mockito.Mockito.*"
+        },
+        filteredTypes = {
+          "com.sun.*",
+          "io.micrometer.shaded.*",
+          "java.awt.*",
+          "jdk.*",
+          "sun.*",
+        },
+      };
+      sources = {
+        organizeImports = {
+          starThreshold = 9999;
+          staticStarThreshold = 9999;
+        };
+      };
+      codeGeneration = {
+        toString = {
+          template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}"
+        },
+        hashCodeEquals = {
+          useJava7Objects = true,
+        },
+        useBlocks = true,
+      };
+      configuration = {
+        runtimes = {
+          {
+            name = "JavaSE-11",
+            path = "/etc/alternatives/jre_11/",
+          },
+          {
+            name = "JavaSE-18",
+            path = "/etc/alternatives/jre_18/",
+          },
+        }
+      };
     }
   },
+
+  on_attach = on_attach,
+
 
   -- Language server `initializationOptions`
   -- You need to extend the `bundles` with paths to jar files
@@ -65,6 +138,14 @@ local config = {
     bundles = {}
   },
 }
+local bundles = {
+  vim.fn.glob(home .. "/.local/share/nvim/lsp_servers/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar")
+};
+vim.list_extend(bundles, vim.split(home .. vim.fn.glob("/vscode-java-test/server/*.jar"), "\n"))
+config['init_options'] = {
+  bundles = bundles
+}
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
 require('jdtls').start_or_attach(config)
+
