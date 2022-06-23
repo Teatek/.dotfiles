@@ -1,6 +1,7 @@
 local home = os.getenv('HOME')
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 
+-- java project is different from project workspace (use a different directory)
 local workspace_dir = home .. '/projects/javap/' .. project_name
 
 local on_attach = function(client, bufnr)
@@ -24,6 +25,23 @@ local on_attach = function(client, bufnr)
   vim.keymap.set("n", "<leader>tc", "<Cmd>lua require'jdtls'.test_class()<CR>", {buffer=0})
   vim.keymap.set("n", "<leader>tnm", "<Cmd>lua require'jdtls'.test_nearest_method()<CR>", {buffer=0})
 
+  vim.api.nvim_buf_create_user_command(
+  0,
+  'JdtNearestMethod',
+  function(opts)
+    require("jdtls").test_nearest_method()
+  end,
+  {}
+  )
+
+  vim.api.nvim_buf_create_user_command(
+  0,
+  'JdtTestClass',
+  function(opts)
+    require("jdtls").test_class()
+  end,
+  {}
+  )
 end
 
 local config = {
