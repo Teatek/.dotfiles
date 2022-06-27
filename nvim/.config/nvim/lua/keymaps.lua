@@ -1,4 +1,7 @@
+-- globals
 vim.g.mapleader = " "
+vim.g.netrw_winsize = 15
+
 local homedir = vim.fn.getenv("HOME")
 
 -- exit
@@ -18,8 +21,8 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 -- Save a file as root (,W)
 vim.keymap.set('n', '<leader>W', ':w !sudo tee % > /dev/null<CR>')
 
--- explorer auto
-vim.keymap.set('n', '<leader>pv', ':wincmd v<bar> :Ex <bar> :vertical resize 25 <CR>')
+-- explorer auto (like nerdtree)
+vim.keymap.set('n', '<leader>pv', ':Lexplore<CR>')
 
 -- resize
 vim.keymap.set('n', '<leader>+', ':resize +5<CR>')
