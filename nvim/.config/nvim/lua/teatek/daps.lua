@@ -1,3 +1,4 @@
+vim.keymap.set("n", "<F4>", ":lua require('dapui').toggle()<CR>")
 vim.keymap.set("n", "<F5>", ":lua require'dap'.continue()<CR>")
 vim.keymap.set("n", "<F6>", ":lua require'dap'.step_over()<CR>")
 vim.keymap.set("n", "<F10>", ":lua require'dap'.step_into()<CR>")
@@ -8,6 +9,7 @@ vim.keymap.set("n", "<leader>Br", ":lua require'dap'.set_breakpoint(nil, nil, vi
 vim.keymap.set("n", "<leader>dr", ":lua require'dap'.repl.open()<CR>")
 
 require("dapui").setup()
+
 vim.api.nvim_create_user_command(
 'DapUIToggle',
 function(opts)
@@ -15,3 +17,23 @@ function(opts)
 end,
 {}
 )
+
+local dap = require("dap")
+
+local homedir = vim.fn.getenv("HOME")
+dap.adapters.coreclr = {
+  type = 'executable',
+  command = homedir .. 'work/soft/dotnet/netcoredbg/netcoredbg.exe',
+  args = {'--interpreter=vscode'}
+}
+
+dap.configurations.cs = {
+  {
+    type = "coreclr",
+    name = "launch - netcoredbg",
+    request = "launch",
+    program = function()
+        return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+    end,
+  },
+}

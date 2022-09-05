@@ -29,3 +29,7 @@ vim.api.nvim_create_user_command(
   end,
   {}
 )
+
+vim.keymap.set('n', '<leader>rr', '<Plug>RestNvim')
+vim.keymap.set('n', '<leader>rp', '<Plug>RestNvimPreview')
+vim.keymap.set('n', '<leader>rl', '<Plug>RestNvimLast')

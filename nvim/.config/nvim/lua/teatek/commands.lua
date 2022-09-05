@@ -1,0 +1,4 @@
+-- quickfix list
+-- vim.api.nvim_create_autocmd("FileType cs", {
+--   command = "setlocal errorformat= %#%f(%l\\,%c): %m"
+-- })
