@@ -13,7 +13,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer=0})
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {buffer=0})
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer=0})
-  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer=0})
+  -- vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer=0}) -- Not useful ? (can use gd instead)
   vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, {buffer=0})
   vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, {buffer=0})
   vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, {buffer=0})
@@ -64,14 +64,14 @@ local config = {
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
 
     -- 💀
-    '-jar', home .. '/.local/share/nvim/lsp_servers/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
+    '-jar', home .. '/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
     -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
     -- Must point to the                                                     Change this to
     -- eclipse.jdt.ls installation                                           the actual version
 
 
     -- 💀
-    '-configuration', home .. '/.local/share/nvim/lsp_servers/jdtls/config_win',
+    '-configuration', home .. '/.local/share/nvim/mason/packages/jdtls/config_linux',
     -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        ^^^^^^
     -- Must point to the                      Change to one of `linux`, `win` or `mac`
     -- eclipse.jdt.ls installation            Depending on your system.
@@ -156,10 +156,11 @@ local config = {
     bundles = {}
   },
 }
+-- for debugging and testing (need to install manually the servers)
 local bundles = {
-  vim.fn.glob(home .. "/.local/share/nvim/lsp_servers/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar")
+  vim.fn.glob(home .. "/.local/share/nvim/mason/packages/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar")
 };
-vim.list_extend(bundles, vim.split(home .. vim.fn.glob("/vscode-java-test/server/*.jar"), "\n"))
+vim.list_extend(bundles, vim.split(home .. vim.fn.glob("/.local/share/nvim/mason/packages/vscode-java-test/server/*.jar"), "\n"))
 config['init_options'] = {
   bundles = bundles
 }
