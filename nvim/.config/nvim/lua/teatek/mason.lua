@@ -9,5 +9,5 @@ require("mason").setup({
 })
 -- html lsp will install css, json and eslint too
 require("mason-lspconfig").setup({
-    ensure_installed = { "sumneko_lua", "clangd", "jdtls", "html" }
+    ensure_installed = { "lua_ls", "clangd", "jdtls", "html" }
 })

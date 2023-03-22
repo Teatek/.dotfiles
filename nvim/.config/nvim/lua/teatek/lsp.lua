@@ -115,24 +115,9 @@ nvim_lsp.intelephense.setup({
     }
   }
 })
--- c# setup
--- need to install omnisharp server (stdio)
-local homedir = vim.fn.getenv("HOME")
-
--- need to give fullpath otherwise it doesn't works
-local omnisharp_bin = homedir .. "/work/soft/omnisharp-server/OmniSharp.dll"
-
-nvim_lsp.omnisharp.setup {
-  capabilities = capabilities,
-  on_attach = on_attach,
-  handlers = {
-    ["textDocument/definition"] = require('omnisharp_extended').handler,
-  },
-  cmd = { "dotnet", omnisharp_bin },
-}
 
 -- lua for nvim
-require'lspconfig'.sumneko_lua.setup {
+nvim_lsp.lua_ls.setup {
   capabilities = capabilities,
   on_attach = on_attach,
   settings = {
@@ -148,6 +133,7 @@ require'lspconfig'.sumneko_lua.setup {
       workspace = {
         -- Make the server aware of Neovim runtime files
         library = vim.api.nvim_get_runtime_file("", true),
+        checkThirdParty = false,
       },
       -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = {

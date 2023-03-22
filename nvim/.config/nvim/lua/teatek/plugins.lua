@@ -15,9 +15,14 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
   use 'romainl/vim-qf'
-  use 'altercation/vim-colors-solarized'
-  use 'navarasu/onedark.nvim'
-  use 'itchyny/lightline.vim'
+
+  -- theme
+  use "EdenEast/nightfox.nvim"
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
+
   use 'itchyny/vim-gitbranch'
   use {
     'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' },
@@ -66,8 +71,6 @@ return require('packer').startup(function(use)
 
   -- java eclipse like
   use 'mfussenegger/nvim-jdtls'
-  -- c# textdoc/definition
-  use 'Hoffs/omnisharp-extended-lsp.nvim'
 
   -- rest api
   use 'NTBBloodbath/rest.nvim'

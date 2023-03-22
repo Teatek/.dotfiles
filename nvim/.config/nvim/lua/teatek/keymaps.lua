@@ -1,6 +1,7 @@
--- globals
+-- global
 vim.g.mapleader = " "
 vim.g.netrw_winsize = 15
+vim.g.netrw_preview = 1
 
 local homedir = vim.fn.getenv("HOME")
 
@@ -18,11 +19,15 @@ vim.keymap.set('n', '<leader>l', ':wincmd l<CR>')
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
+-- navigation
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+
 -- Save a file as root (,W)
 vim.keymap.set('n', '<leader>W', ':w !sudo tee % > /dev/null<CR>')
 
 -- explorer auto (like nerdtree)
-vim.keymap.set('n', '<leader>pv', ':Lexplore<CR>')
+vim.keymap.set('n', '<leader>pv', ':Ex<CR>')
 
 -- resize
 vim.keymap.set('n', '<leader>+', ':resize +5<CR>')
@@ -32,16 +37,19 @@ vim.keymap.set('n', '<leader>-', ':resize -5<CR>')
 vim.keymap.set('n', '<F2>', ':noh<CR>', { silent = true })
 
 -- telescope
-vim.keymap.set('n', '<C-p>', '<cmd>Telescope find_files<CR>')
+vim.keymap.set('n', '<C-p>', "<CMD>lua require'teatek.telescope-config'.project_files()<CR>")
+vim.keymap.set('n', '<leader>pf', '<cmd>Telescope find_files<CR>')
 vim.keymap.set('n', '<leader>ps', '<cmd>Telescope live_grep<CR>')
 vim.keymap.set('n', '<leader>bf', '<cmd>Telescope buffers<CR>')
 
+-- paste
 -- delete wihout changing what's in memory (register)
 vim.keymap.set('v', '<leader>p', '"_dP')
--- yank pour le systeme
+vim.keymap.set('n', '<leader>p', '"+p')
+-- yank
 vim.keymap.set('n', '<leader>y', '"+y')
 vim.keymap.set('v', '<leader>y', '"+y')
--- copie jusqu'en haut
+-- yank the entire file
 vim.keymap.set('n', '<leader>Y', 'gg"+yGj')
 
 -- windows
@@ -50,7 +58,6 @@ if vim.fn.has("win32") == 1 then
   vim.keymap.set('n', '<C-z>', '')
   -- vim.opt.shell = homedir ..'/AppData/Local/Programs/Git/bin/bash.exe'
   -- vim.opt.shellcmdflag = '-c -s'
-  vim.keymap.set('n', '<C-->', '<C-^>')
   -- shellslash /!\ IMPORTANT : options to comment when tree-sitter is installing languages or using packer commands
   -- vim.opt.shellslash = true
 end

@@ -1,5 +1,4 @@
 vim.opt.showmode = false
-vim.opt.clipboard = 'unnamedplus'
 vim.opt.mouse = 'a'
 vim.opt.guicursor = ''
 vim.opt.laststatus = 2
@@ -41,4 +40,8 @@ if vim.fn.executable('rg') == 1 then
     vim.g.rg_derive_root = true
     vim.opt.grepprg = 'rg --vimgrep --no-heading'
     vim.opt.grepformat = '%f:%l:%c:%m,%f:%l:%m'
+end
+
+if vim.fn.executable('fish') == 1 then
+  vim.opt.shell = '/usr/bin/fish'
 end

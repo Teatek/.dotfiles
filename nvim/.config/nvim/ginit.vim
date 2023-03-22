@@ -24,6 +24,8 @@ snoremap <silent><RightMouse> <C-G>:call GuiShowContextMenu()<CR>gv
 " treeview
 nnoremap <leader>pv :GuiTreeviewToggle<CR>
 
+nnoremap <C--> <C-^>
+
 " tips
 "
 "CTRL-R CTRL-W   : pull word under the cursor into a command line or search
