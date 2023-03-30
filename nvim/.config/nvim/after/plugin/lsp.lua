@@ -21,7 +21,7 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-local servers = { 'clangd', 'pyright', 'gdscript', 'html', 'cssls', 'emmet_ls', 'gopls', 'rust_analyzer', 'lemminx' }
+local servers = { 'clangd', 'pyright', 'gdscript', 'html', 'cssls', 'emmet_ls', 'gopls', 'rust_analyzer', 'lemminx', 'dartls' }
 -- common settings
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {

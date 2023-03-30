@@ -24,7 +24,7 @@ require('rest-nvim').setup({
 -- mapping 
 vim.api.nvim_create_user_command(
   'RestRun',
-  function(opts)
+  function()
     require("rest-nvim").run()
   end,
   {}

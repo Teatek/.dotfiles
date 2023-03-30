@@ -74,6 +74,9 @@ return require('packer').startup(function(use)
 
   -- rest api
   use 'NTBBloodbath/rest.nvim'
+
+  use 'reisub0/hot-reload.vim'
+  -- end of plugins
   if packer_bootstrap then
     require('packer').sync()
   end

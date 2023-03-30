@@ -1,8 +1,3 @@
--- global
-vim.g.mapleader = " "
-vim.g.netrw_winsize = 15
-vim.g.netrw_preview = 1
-
 local homedir = vim.fn.getenv("HOME")
 
 -- exit
@@ -36,12 +31,10 @@ vim.keymap.set('n', '<leader>-', ':resize -5<CR>')
 -- highlight (disable temporarily)
 vim.keymap.set('n', '<F2>', ':noh<CR>', { silent = true })
 
--- telescope
-vim.keymap.set('n', '<C-p>', "<CMD>lua require'teatek.telescope-config'.project_files()<CR>")
-vim.keymap.set('n', '<leader>pf', '<cmd>Telescope find_files<CR>')
-vim.keymap.set('n', '<leader>ps', '<cmd>Telescope live_grep<CR>')
-vim.keymap.set('n', '<leader>bf', '<cmd>Telescope buffers<CR>')
-
+-- delete
+vim.keymap.set('v', '<leader>d', '"_d')
+vim.keymap.set('n', '<leader>d', '"_d')
+-- yank
 -- paste
 -- delete wihout changing what's in memory (register)
 vim.keymap.set('v', '<leader>p', '"_dP')

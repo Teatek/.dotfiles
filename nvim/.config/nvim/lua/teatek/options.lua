@@ -1,3 +1,8 @@
+-- global
+vim.g.mapleader = " "
+vim.g.netrw_winsize = 15
+vim.g.netrw_preview = 1
+
 vim.opt.showmode = false
 vim.opt.mouse = 'a'
 vim.opt.guicursor = ''
@@ -12,7 +17,7 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
-vim.opt.wrap = false
+vim.opt.wrap = true
 vim.opt.foldlevel = 99
 -- vim.opt.foldmethod = 'expr'
 -- vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
