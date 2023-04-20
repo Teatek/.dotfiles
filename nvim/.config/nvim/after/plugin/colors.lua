@@ -1,3 +1,5 @@
+local hourNow = tonumber(os.date("%H"))
+
 require('lualine').setup {
   options = {
     -- ... your lualine config
@@ -6,17 +8,10 @@ require('lualine').setup {
   }
 }
 
--- set colorscheme automatically based on terminal theme
-vim.api.nvim_create_autocmd("OptionSet", {
-  pattern = "background",
-  callback = function()
-    if vim.g.background == 'dark' then
-      vim.cmd.colorscheme('nightfox')
-    else
-      vim.cmd.colorscheme('dayfox')
-    end
-  end
-})
-
--- set colorscheme by default
-vim.cmd[[colorscheme nightfox]]
+-- set colorscheme by default depending on time of day
+-- best way since we can't have the background color of the terminal
+if hourNow > 8 and hourNow < 18 then
+  vim.cmd[[colorscheme dayfox]]
+else
+  vim.cmd[[colorscheme nightfox]]
+end
