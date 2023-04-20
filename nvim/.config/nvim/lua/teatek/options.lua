@@ -18,21 +18,7 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.wrap = true
-vim.opt.foldlevel = 99
--- vim.opt.foldmethod = 'expr'
--- vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
----WORKAROUND
-vim.api.nvim_create_autocmd({'BufEnter','BufAdd','BufNew','BufNewFile','BufWinEnter'}, {
-  group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
-  callback = function()
-    vim.opt.foldmethod = 'expr'
-    vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-  end
-})
----ENDWORKAROUND
-
-vim.opt.hlsearch = true
-vim.opt.scrolloff = 8
+vim.opt.scrolloff = 4
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undofile = true

@@ -76,6 +76,8 @@ return require('packer').startup(function(use)
   use 'NTBBloodbath/rest.nvim'
 
   use 'reisub0/hot-reload.vim'
+
+  use 'szw/vim-maximizer'
   -- end of plugins
   if packer_bootstrap then
     require('packer').sync()

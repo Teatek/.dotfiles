@@ -9,27 +9,21 @@ vim.keymap.set('n', '<leader>h', ':wincmd h<CR>')
 vim.keymap.set('n', '<leader>j', ':wincmd j<CR>')
 vim.keymap.set('n', '<leader>k', ':wincmd k<CR>')
 vim.keymap.set('n', '<leader>l', ':wincmd l<CR>')
+vim.keymap.set('n', '<C-w>m', ':MaximizerToggle<CR>')
 
 -- move lines
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
--- navigation
-vim.keymap.set('n', '<C-u>', '<C-u>zz')
-vim.keymap.set('n', '<C-d>', '<C-d>zz')
-
 -- Save a file as root (,W)
 vim.keymap.set('n', '<leader>W', ':w !sudo tee % > /dev/null<CR>')
 
 -- explorer auto (like nerdtree)
-vim.keymap.set('n', '<leader>pv', ':Ex<CR>')
+vim.keymap.set('n', '<leader>pv', ':Lexplore<CR>')
 
 -- resize
 vim.keymap.set('n', '<leader>+', ':resize +5<CR>')
 vim.keymap.set('n', '<leader>-', ':resize -5<CR>')
-
--- highlight (disable temporarily)
-vim.keymap.set('n', '<F2>', ':noh<CR>', { silent = true })
 
 -- delete
 vim.keymap.set('v', '<leader>d', '"_d')

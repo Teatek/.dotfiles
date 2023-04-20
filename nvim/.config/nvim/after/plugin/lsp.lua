@@ -3,11 +3,18 @@ local nvim_lsp = require('lspconfig')
 local lspkind = require('lspkind')
 local luasnip = require("luasnip")
 
+luasnip.config.set_config({
+  region_check_events = 'InsertEnter',
+  delete_check_events = 'InsertLeave'
+})
+
 local on_attach = function()
+  -- TODO: use help pages if no error when called
   vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer=0})
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {buffer=0})
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer=0})
   -- vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer=0}) -- Not useful ? (can use gd instead)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, {buffer=0})
   vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, {buffer=0})
   vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, {buffer=0})
   vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, {buffer=0})
@@ -21,7 +28,7 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-local servers = { 'clangd', 'pyright', 'gdscript', 'html', 'cssls', 'emmet_ls', 'gopls', 'rust_analyzer', 'lemminx', 'dartls' }
+local servers = { 'clangd', 'pyright', 'gdscript', 'html', 'cssls', 'emmet_ls', 'gopls', 'rust_analyzer', 'lemminx', 'dartls', 'tsserver' }
 -- common settings
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
@@ -143,9 +150,9 @@ nvim_lsp.lua_ls.setup {
   },
 }
 
--- ####################### autocomplete ####################### 
+-- ####################### autocomplete #######################
 
-vim.opt.completeopt={menu, menuone, noselect}
+vim.opt.completeopt={'menu', 'menuone', 'noselect'}
 
 cmp.setup({
   snippet = {
@@ -161,8 +168,8 @@ cmp.setup({
     ['<C-e>'] = cmp.mapping.abort(),
     ['<C-i>'] = cmp.mapping.close(),
     ["<Tab>"] = cmp.mapping(function(fallback)
-      if luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
+      if luasnip.jumpable(1) then
+        luasnip.jump(1)
       else
         fallback()
       end
