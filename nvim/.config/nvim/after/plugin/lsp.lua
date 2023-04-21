@@ -3,11 +3,6 @@ local nvim_lsp = require('lspconfig')
 local lspkind = require('lspkind')
 local luasnip = require("luasnip")
 
-luasnip.config.set_config({
-  region_check_events = 'InsertEnter',
-  delete_check_events = 'InsertLeave'
-})
-
 local on_attach = function()
   -- TODO: use help pages if no error when called
   vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer=0})
@@ -167,14 +162,14 @@ cmp.setup({
     ['<CR>'] = cmp.mapping.confirm({ select = false }),
     ['<C-e>'] = cmp.mapping.abort(),
     ['<C-i>'] = cmp.mapping.close(),
-    ["<Tab>"] = cmp.mapping(function(fallback)
+    ["<C-f>"] = cmp.mapping(function(fallback)
       if luasnip.jumpable(1) then
         luasnip.jump(1)
       else
         fallback()
       end
     end, { "i", "s" }),
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
+    ["<C-b>"] = cmp.mapping(function(fallback)
       if luasnip.jumpable(-1) then
         luasnip.jump(-1)
       else
@@ -217,4 +212,5 @@ cmp.setup({
   })
 
 -- friendly snippets
-require("luasnip.loaders.from_vscode").load()
+-- slow loading time (should probably load only what's necessary)
+-- require("luasnip.loaders.from_vscode").load()

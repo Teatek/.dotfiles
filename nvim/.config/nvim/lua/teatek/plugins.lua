@@ -63,7 +63,6 @@ return require('packer').startup(function(use)
   use 'rafamadriz/friendly-snippets'
 
   -- debugger
-  use 'mfussenegger/nvim-dap'
   use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
 
   -- prettier

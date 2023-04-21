@@ -5,7 +5,6 @@ vim.g.netrw_preview = 1
 
 vim.opt.showmode = false
 vim.opt.mouse = 'a'
-vim.opt.guicursor = ''
 vim.opt.laststatus = 2
 vim.opt.updatetime = 50
 vim.opt.errorbells = false
@@ -25,6 +24,8 @@ vim.opt.undofile = true
 
 vim.opt.list = true
 vim.opt.listchars = 'tab:>─,eol:↲'
+
+vim.opt.dictionary = vim.opt.dictionary + '/usr/share/dict/words'
 
 vim.opt.colorcolumn = '100'
 if vim.fn.executable('rg') == 1 then
