@@ -23,7 +23,7 @@ autocmd({"BufWritePre"}, {
 })
 
 -- automatically folding
-vim.api.nvim_create_autocmd("BufWinEnter", {
+autocmd("BufWinEnter", {
   pattern = "*.*",
   command = "silent! loadview"
 })
@@ -32,3 +32,11 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 --   command = "mkview"
 -- })
 
+-- prevent changing hightlight when using a LSP Server
+autocmd("ColorScheme", {
+  callback = function(_)
+    for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
+      vim.api.nvim_set_hl(0, group, {})
+    end
+  end
+})

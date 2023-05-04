@@ -17,7 +17,7 @@ return require('packer').startup(function(use)
   use 'romainl/vim-qf'
 
   -- theme
-  use "EdenEast/nightfox.nvim"
+  use {"EdenEast/nightfox.nvim"}
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }

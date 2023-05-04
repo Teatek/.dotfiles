@@ -1,3 +1,10 @@
+require("telescope").setup({
+  pickers = {
+    colorscheme = {
+      enable_preview = true
+    }
+  }
+})
 local function project_files()
   local opts = {} -- define here if you want to define something
   vim.fn.system('git rev-parse --is-inside-work-tree')

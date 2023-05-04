@@ -212,5 +212,4 @@ cmp.setup({
   })
 
 -- friendly snippets
--- slow loading time (should probably load only what's necessary)
--- require("luasnip.loaders.from_vscode").load()
+require("luasnip.loaders.from_vscode").lazy_load()
