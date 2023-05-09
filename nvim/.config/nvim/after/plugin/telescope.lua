@@ -3,8 +3,18 @@ require("telescope").setup({
     colorscheme = {
       enable_preview = true
     }
-  }
+  },
+  -- extensions = {
+  --   ["ui-select"] = {
+  --     require("telescope.themes").get_dropdown {
+  --       -- even more opts
+  --     }
+  --   }
+  -- }
 })
+
+-- require("telescope").load_extension("ui-select")
+
 local function project_files()
   local opts = {} -- define here if you want to define something
   vim.fn.system('git rev-parse --is-inside-work-tree')

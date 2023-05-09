@@ -15,9 +15,10 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
   use 'romainl/vim-qf'
+  use 'typicode/bg.nvim'
 
   -- theme
-  use {"EdenEast/nightfox.nvim"}
+  use 'EdenEast/nightfox.nvim'
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
@@ -29,6 +30,7 @@ return require('packer').startup(function(use)
     config = function() require('gitsigns').setup() end
   }
   use 'nvim-telescope/telescope.nvim'
+  -- use 'nvim-telescope/telescope-ui-select.nvim'
   use 'tpope/vim-fugitive'
   use 'tpope/vim-sleuth'
   use 'tpope/vim-commentary'

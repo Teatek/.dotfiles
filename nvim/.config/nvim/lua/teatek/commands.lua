@@ -6,20 +6,20 @@ local yank_group = augroup('HighlightYank', {})
 
 
 autocmd('TextYankPost', {
-    group = yank_group,
-    pattern = '*',
-    callback = function()
-        vim.highlight.on_yank({
-            higroup = 'IncSearch',
-            timeout = 40,
-        })
-    end,
+  group = yank_group,
+  pattern = '*',
+  callback = function()
+    vim.highlight.on_yank({
+      higroup = 'IncSearch',
+      timeout = 40,
+    })
+  end,
 })
 
 autocmd({"BufWritePre"}, {
-    group = TeatekGroup,
-    pattern = "*",
-    command = [[%s/\s\+$//e]],
+  group = TeatekGroup,
+  pattern = "*",
+  command = [[%s/\s\+$//e]],
 })
 
 -- automatically folding
