@@ -6,6 +6,4 @@ vim.schedule(function()
   else
     vim.cmd[[colorscheme nightfox]]
   end
-  -- statusline
-  require('lualine').setup { options = { theme = 'auto' } }
 end)
