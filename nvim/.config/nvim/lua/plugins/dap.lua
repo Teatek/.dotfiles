@@ -3,6 +3,9 @@ return {
   dependencies = {
     "mfussenegger/nvim-dap"
   },
+  keys = {
+    {'<F4>', function() require('dapui').toggle() end},
+  },
   config = function()
     require("dapui").setup()
   end,

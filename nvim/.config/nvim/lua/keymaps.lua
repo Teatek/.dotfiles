@@ -9,7 +9,6 @@ vim.keymap.set('n', '<leader>h', ':wincmd h<CR>')
 vim.keymap.set('n', '<leader>j', ':wincmd j<CR>')
 vim.keymap.set('n', '<leader>k', ':wincmd k<CR>')
 vim.keymap.set('n', '<leader>l', ':wincmd l<CR>')
-vim.keymap.set('n', '<C-w>m', ':MaximizerToggle<CR>')
 
 -- move lines
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")

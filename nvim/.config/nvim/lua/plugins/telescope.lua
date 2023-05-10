@@ -3,6 +3,9 @@ return {
   dependencies = {
     'nvim-telescope/telescope-ui-select.nvim'
   },
+  keys = {
+    { '<leader>ca', function () vim.lsp.buf.code_action() end },
+  },
   cmd = {'Telescope'},
   config = function()
     require("telescope").setup({

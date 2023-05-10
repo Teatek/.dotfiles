@@ -5,15 +5,26 @@ return {
   'EdenEast/nightfox.nvim',
 
   'tpope/vim-sleuth',
-  'tpope/vim-commentary',
+  {
+    'tpope/vim-commentary',
+    keys = {
+      'gc',
+    },
+  },
   'tpope/vim-surround',
   'tpope/vim-vinegar',
   'tpope/vim-unimpaired',
   'tpope/vim-abolish',
 
   -- databases
-  'tpope/vim-dadbod',
-  'kristijanhusak/vim-dadbod-ui',
+  {
+    'kristijanhusak/vim-dadbod-ui',
+    dependencies = {
+      'tpope/vim-dadbod',
+    },
+    lazy = true,
+    cmd = 'DBUI',
+  },
 
   -- prettier,
   'sbdchd/neoformat',
@@ -21,7 +32,15 @@ return {
   -- java eclipse like,
   'mfussenegger/nvim-jdtls',
 
-  'reisub0/hot-reload.vim',
+  {
+    'reisub0/hot-reload.vim',
+    ft = "dart",
+  },
 
-  'szw/vim-maximizer',
+  {
+    'szw/vim-maximizer',
+    init = function()
+      vim.keymap.set('n', '<C-w>m', ':MaximizerToggle<CR>')
+    end,
+  },
 }
