@@ -25,6 +25,8 @@ vim.opt.undofile = true
 vim.opt.list = true
 vim.opt.listchars = 'tab:>─,eol:↲'
 
+vim.opt.foldcolumn='auto'
+
 vim.opt.dictionary = vim.opt.dictionary + '/usr/share/dict/words'
 
 vim.opt.colorcolumn = '100'

@@ -5,12 +5,7 @@ return {
   'EdenEast/nightfox.nvim',
 
   'tpope/vim-sleuth',
-  {
-    'tpope/vim-commentary',
-    keys = {
-      'gc',
-    },
-  },
+  'tpope/vim-commentary',
   'tpope/vim-surround',
   'tpope/vim-vinegar',
   'tpope/vim-unimpaired',
@@ -27,7 +22,7 @@ return {
   },
 
   -- prettier,
-  'sbdchd/neoformat',
+  {'sbdchd/neoformat', cmd = 'Neoformat'},
 
   -- java eclipse like,
   'mfussenegger/nvim-jdtls',

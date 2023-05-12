@@ -4,7 +4,11 @@ return {
     'kyazdani42/nvim-web-devicons',
     opt = true
   },
-  config = function()
-    require('lualine').setup { options = { theme = 'auto' } }
-  end
+  opts = {
+    options = {
+      theme = 'auto',
+      section_separators = '',
+      component_separators = '|'
+    },
+  },
 }
