@@ -20,9 +20,8 @@ config["init_options"] = {
   bundles = bundles,
 }
 
-config["on_attach"] = function(client, bufnr)
-  require('jdtls').setup_dap({ hotcodereplace = 'auto' })
-  require('jdtls.setup').add_commands()
+config["on_attach"] = function(_, _)
+  require('jdtls.dap').setup_dap_main_class_configs()
 
 -- mapping
 -- lsp
@@ -44,7 +43,7 @@ config["on_attach"] = function(client, bufnr)
   vim.api.nvim_buf_create_user_command(
   0,
   'JdtNearestMethod',
-  function(opts)
+  function(_)
     require("jdtls").test_nearest_method()
   end,
   {}
@@ -53,7 +52,7 @@ config["on_attach"] = function(client, bufnr)
   vim.api.nvim_buf_create_user_command(
   0,
   'JdtTestClass',
-  function(opts)
+  function(_)
     require("jdtls").test_class()
   end,
   {}

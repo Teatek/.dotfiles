@@ -3,9 +3,8 @@ return {
 
   -- theme,
   'EdenEast/nightfox.nvim',
-
   'tpope/vim-sleuth',
-  'tpope/vim-commentary',
+  {'tpope/vim-commentary', lazy = false },
   'tpope/vim-surround',
   'tpope/vim-vinegar',
   'tpope/vim-unimpaired',
@@ -38,4 +37,5 @@ return {
       vim.keymap.set('n', '<C-w>m', ':MaximizerToggle<CR>')
     end,
   },
+  'habamax/vim-godot',
 }

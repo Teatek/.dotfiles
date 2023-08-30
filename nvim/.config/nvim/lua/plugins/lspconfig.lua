@@ -45,6 +45,8 @@ return {
       ensure_installed = { "lua_ls", "tsserver", "html", "jdtls" }
     })
 
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities.textDocument.completion.completionItem.snippetSupport = true
     mason_lsp.setup_handlers {
       -- The first entry (without a key) will be the default handler
       -- and will be called for each installed server that doesn't have
@@ -52,6 +54,7 @@ return {
       function (server_name) -- default handler (optional)
         nvim_lsp[server_name].setup {
           on_attach = on_attach,
+          capabilities = capabilities
         }
       end,
 
@@ -171,9 +174,9 @@ return {
     }
 
     -- Manual servers setup (not using mason)
+
     -- godot
     nvim_lsp.gdscript.setup ({
-      cmd = { 'nc', 'localhost', '6005' },
       on_attach = on_attach
     })
   end

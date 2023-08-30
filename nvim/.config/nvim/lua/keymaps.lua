@@ -4,6 +4,9 @@ local homedir = vim.fn.getenv("HOME")
 vim.keymap.set('i', '<C-c>', '<esc>')
 vim.keymap.set('t', '<esc>', '<C-\\><C-n>')
 
+-- save
+vim.keymap.set('n', '<C-s>', ':w<CR>')
+
 -- windows
 vim.keymap.set('n', '<leader>h', ':wincmd h<CR>')
 vim.keymap.set('n', '<leader>j', ':wincmd j<CR>')
