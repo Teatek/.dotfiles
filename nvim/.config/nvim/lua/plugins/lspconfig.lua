@@ -13,6 +13,8 @@ return {
     local nvim_lsp = require('lspconfig')
     local mason_lsp = require("mason-lspconfig")
 
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
     require("mason").setup({
       ui = {
         icons = {
@@ -45,8 +47,6 @@ return {
       ensure_installed = { "lua_ls", "tsserver", "html", "jdtls" }
     })
 
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities.textDocument.completion.completionItem.snippetSupport = true
     mason_lsp.setup_handlers {
       -- The first entry (without a key) will be the default handler
       -- and will be called for each installed server that doesn't have
@@ -177,7 +177,8 @@ return {
 
     -- godot
     nvim_lsp.gdscript.setup ({
-      on_attach = on_attach
+      on_attach = on_attach,
+      capabilities = capabilities
     })
   end
 }

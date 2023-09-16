@@ -4,7 +4,7 @@ return {
     'nvim-telescope/telescope-ui-select.nvim'
   },
   keys = {
-    { '<leader>ca', function () vim.lsp.buf.code_action() end },
+    { '<leader>ca'},
   },
   cmd = {'Telescope'},
   config = function()
