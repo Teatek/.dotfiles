@@ -3,10 +3,7 @@ return {
   dependencies = {
     'nvim-telescope/telescope-ui-select.nvim'
   },
-  keys = {
-    { '<leader>ca'},
-  },
-  cmd = {'Telescope'},
+  lazy = false,
   config = function()
     require("telescope").setup({
       pickers = {

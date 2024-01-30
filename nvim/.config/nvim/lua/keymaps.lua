@@ -41,6 +41,9 @@ vim.keymap.set('v', '<leader>y', '"+y')
 -- yank the entire file
 vim.keymap.set('n', '<leader>Y', 'gg"+yGj')
 
+-- fold toggle
+-- vim.keymap.set('n', '<Tab>', 'za')
+
 -- windows
 if vim.fn.has("win32") == 1 then
   homedir = homedir.gsub(homedir, '\\', '/')

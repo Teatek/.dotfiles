@@ -40,3 +40,29 @@ autocmd("ColorScheme", {
     end
   end
 })
+
+
+-- auto term to run single file
+vim.api.nvim_create_user_command(
+'AutoTerm',
+function()
+  -- could be improve by getting opened terminal
+  vim.api.nvim_command("belowright vsplit | terminal")
+  local termnr = vim.b.terminal_job_id
+  local user_input = vim.fn.input("Enter command: ")
+  vim.fn.chansend(termnr, user_input .. "\n")
+  vim.api.nvim_command("$")
+  vim.api.nvim_command("wincmd h")
+  autocmd({"BufWritePost"}, {
+    group = TeatekGroup,
+    buffer = 0,
+    callback = function ()
+      -- should send only if a terminal is opened
+      -- and if terminal is close then we delete autocmd
+      vim.fn.chansend(termnr, "clear\n")
+      vim.fn.chansend(termnr, user_input .. "\n")
+    end,
+  })
+end,
+{}
+)
