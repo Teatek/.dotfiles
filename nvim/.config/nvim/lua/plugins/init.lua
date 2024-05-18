@@ -6,7 +6,6 @@ return {
   'tpope/vim-sleuth',
   {'tpope/vim-commentary', lazy = false },
   'tpope/vim-surround',
-  'tpope/vim-vinegar',
   'tpope/vim-unimpaired',
   'tpope/vim-abolish',
 
@@ -34,7 +33,7 @@ return {
   {
     'szw/vim-maximizer',
     init = function()
-      vim.keymap.set('n', '<C-w>m', ':MaximizerToggle<CR>')
+      vim.keymap.set('n', '<C-w>m', ':MaximizerToggle<CR>', { desc = "Toggle maximize window"})
     end,
   },
   'habamax/vim-godot',

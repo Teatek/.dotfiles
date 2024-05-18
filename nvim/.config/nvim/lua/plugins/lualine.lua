@@ -10,5 +10,6 @@ return {
       section_separators = '',
       component_separators = '|'
     },
+    extensions = { "oil", "nvim-dap-ui" },
   },
 }

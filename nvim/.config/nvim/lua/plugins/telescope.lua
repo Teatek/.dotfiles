@@ -1,9 +1,9 @@
 return {
   'nvim-telescope/telescope.nvim',
+  event = 'VeryLazy',
   dependencies = {
     'nvim-telescope/telescope-ui-select.nvim'
   },
-  lazy = false,
   config = function()
     require("telescope").setup({
       pickers = {
