@@ -21,6 +21,8 @@ vim.opt.scrolloff = 4
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undofile = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 vim.opt.list = true
 vim.opt.listchars = 'tab:>─,eol:↲'
