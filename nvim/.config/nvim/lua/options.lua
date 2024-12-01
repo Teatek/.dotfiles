@@ -1,5 +1,4 @@
 -- global
-vim.g.mapleader = " "
 vim.g.netrw_winsize = 15
 vim.g.netrw_preview = 1
 

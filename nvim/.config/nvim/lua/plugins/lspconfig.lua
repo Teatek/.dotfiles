@@ -62,7 +62,7 @@ return {
     -- servers
 
     mason_lsp.setup({
-      ensure_installed = { "lua_ls", "tsserver", "html", "jdtls" }
+      ensure_installed = { "lua_ls", "ts_ls", "html", "jdtls" }
     })
 
     mason_lsp.setup_handlers {
