@@ -34,7 +34,7 @@ return {
       end
     end
 
-    vim.keymap.set('n', '<C-p>', project_files)
+    vim.keymap.set('n', '<leader>ff', project_files)
     vim.keymap.set('n', '<leader>pf', '<cmd>Telescope find_files<CR>')
     vim.keymap.set('n', '<leader>ps', '<cmd>Telescope live_grep<CR>')
     vim.keymap.set('n', '<leader>bf', '<cmd>Telescope buffers<CR>')
