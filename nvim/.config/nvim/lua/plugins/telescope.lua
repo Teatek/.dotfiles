@@ -7,7 +7,7 @@ return {
   config = function()
     require("telescope").setup({
       defaults = {
-        border = false,
+        border = true,
       },
       pickers = {
         colorscheme = {

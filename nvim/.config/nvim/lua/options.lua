@@ -33,11 +33,9 @@ vim.opt.signcolumn = 'auto:2'
 vim.opt.dictionary = vim.opt.dictionary + '/usr/share/dict/words'
 
 
-vim.opt.completeopt = { 'fuzzy', 'menuone', 'noselect', 'popup' }
-
 vim.diagnostic.config({
     severity_sort = true,
-    float = { border = 'rounded', source = 'if_many' },
+    float = { border = 'single' },
     virtual_text = { current_line = true },
     signs = {
         text = {
@@ -48,9 +46,6 @@ vim.diagnostic.config({
         },
     },
 })
-
--- Border on floating windows
-vim.o.winborder = 'rounded'
 
 vim.opt.colorcolumn = '100'
 if vim.fn.executable('rg') == 1 then
