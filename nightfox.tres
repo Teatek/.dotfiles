@@ -1,0 +1,16 @@
+[gd_resource type="Theme" format=3 uid="uid://biotpgeg2c2em"]
+
+[sub_resource type="GDScript" id="GDScript_hhmc0"]
+script/source = "@tool
+extends Theme
+
+func _init() -> void:
+	var settings : EditorSettings = EditorInterface.get_editor_settings()
+
+	settings.set_setting('interface/theme/base_color', Color(0.152941, 0.223529, 0.298039, 1))
+	settings.set_setting('interface/theme/contrast', 0.3)
+	settings.set_setting('interface/theme/accent_color', Color(0.439216, 0.729412, 0.980392, 1))
+"
+
+[resource]
+script = SubResource("GDScript_hhmc0")
