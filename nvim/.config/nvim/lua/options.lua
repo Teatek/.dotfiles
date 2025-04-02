@@ -26,11 +26,31 @@ vim.opt.smartcase = true
 vim.opt.list = true
 vim.opt.listchars = 'tab:>─,eol:↲'
 
-vim.opt.foldcolumn='auto'
-vim.opt.signcolumn='auto:2'
+vim.opt.foldcolumn = 'auto'
+vim.opt.signcolumn = 'auto:2'
 
-
+-- completion
 vim.opt.dictionary = vim.opt.dictionary + '/usr/share/dict/words'
+
+
+vim.opt.completeopt = { 'fuzzy', 'menuone', 'noselect', 'popup' }
+
+vim.diagnostic.config({
+    severity_sort = true,
+    float = { border = 'rounded', source = 'if_many' },
+    virtual_text = { current_line = true },
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = '󰅚 ',
+            [vim.diagnostic.severity.WARN] = '󰀪 ',
+            [vim.diagnostic.severity.INFO] = '󰋽 ',
+            [vim.diagnostic.severity.HINT] = '󰌶 ',
+        },
+    },
+})
+
+-- Border on floating windows
+vim.o.winborder = 'rounded'
 
 vim.opt.colorcolumn = '100'
 if vim.fn.executable('rg') == 1 then
@@ -40,5 +60,5 @@ if vim.fn.executable('rg') == 1 then
 end
 
 if vim.fn.executable('fish') == 1 then
-  vim.opt.shell = '/usr/bin/fish'
+    vim.opt.shell = '/usr/bin/fish'
 end

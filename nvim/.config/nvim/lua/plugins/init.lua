@@ -4,10 +4,7 @@ return {
   -- theme,
   'EdenEast/nightfox.nvim',
   'tpope/vim-sleuth',
-  {'tpope/vim-commentary', lazy = false },
   'tpope/vim-surround',
-  'tpope/vim-unimpaired',
-  'tpope/vim-abolish',
 
   -- databases
   {
@@ -20,10 +17,7 @@ return {
   },
 
   -- prettier,
-  {'sbdchd/neoformat', cmd = 'Neoformat'},
-
-  -- java eclipse like,
-  'mfussenegger/nvim-jdtls',
+  { 'sbdchd/neoformat', cmd = 'Neoformat' },
 
   {
     'reisub0/hot-reload.vim',
@@ -33,8 +27,7 @@ return {
   {
     'szw/vim-maximizer',
     init = function()
-      vim.keymap.set('n', '<C-w>m', ':MaximizerToggle<CR>', { desc = "Toggle maximize window"})
+      vim.keymap.set('n', '<C-w>m', ':MaximizerToggle<CR>', { desc = "Toggle maximize window" })
     end,
   },
-  'habamax/vim-godot',
 }

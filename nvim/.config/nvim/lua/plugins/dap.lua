@@ -20,7 +20,6 @@ return {
           launch_scene = true,
         }
       }
-
     end,
     init = function()
       vim.keymap.set("n", "<F5>", ":lua require'dap'.continue()<CR>")
