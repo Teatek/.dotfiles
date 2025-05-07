@@ -1,7 +1,9 @@
 return {
   'saghen/blink.cmp',
   -- optional: provides snippets for the snippet source
-  dependencies = { 'rafamadriz/friendly-snippets' },
+  dependencies = {
+    'rafamadriz/friendly-snippets'
+  },
 
   -- use a release tag to download pre-built binaries
   version = '1.*',
@@ -16,7 +18,7 @@ return {
     -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
     -- 'super-tab' for mappings similar to vscode (tab to accept)
     -- 'enter' for enter to accept
-    -- 'none' for no mappings
+    -- 'none' for no mappingsblink.cmp.Config
     --
     -- All presets have the following mappings:
     -- C-space: Open menu or open docs if already open
@@ -25,7 +27,7 @@ return {
     -- C-k: Toggle signature help (if signature.enabled = true)
     --
     -- See :h blink-cmp-config-keymap for defining your own keymap
-    keymap = { preset = 'default' },
+    keymap     = { preset = 'default' },
 
     appearance = {
       -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
@@ -35,22 +37,50 @@ return {
 
     -- (Default) Only show the documentation popup when manually triggered
     completion = {
-      menu = { border = 'none' },
+      list = {
+        selection = {
+          preselect = false,
+          auto_insert = true
+        }
+      },
+      menu = {
+        border = 'none'
+      },
       documentation = {
         auto_show = true,
-        window = { border = 'none' },
+        window = {
+          border = 'none'
+        },
       },
     },
 
-    signature = {
+    signature  = {
       enabled = true,
-      window = { border = 'single' },
+      window = {
+        border = 'single'
+      },
+    },
+
+    cmdline    = {
+      completion = {
+        list = {
+          selection = {
+            preselect = false,
+            auto_insert = true
+          }
+        }
+      }
     },
 
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
-    sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer' },
+    sources    = {
+      default = {
+        'lsp',
+        'path',
+        'snippets',
+        'buffer'
+      },
     },
 
     -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
@@ -58,7 +88,11 @@ return {
     -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
     --
     -- See the fuzzy documentation for more information
-    fuzzy = { implementation = "prefer_rust_with_warning" }
+    fuzzy      = {
+      implementation = "prefer_rust_with_warning"
+    }
   },
-  opts_extend = { "sources.default" }
+  opts_extend = {
+    "sources.default"
+  }
 }

@@ -53,7 +53,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     vim.keymap.set('n', 'K', function()
       vim.lsp.buf.hover({ border = "single" })
-    end)
+    end, { buffer = 0 })
 
     -- Enable auto-completion (omnifunc only). Note: Use CTRL-Y to select an item. |complete_CTRL-Y|
     if client:supports_method('textDocument/completion') then
