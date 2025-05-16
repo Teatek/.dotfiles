@@ -14,7 +14,7 @@ local cmd = vim.lsp.rpc.connect('127.0.0.1', tonumber(port))
 vim.lsp.config.gdscript = {
   cmd = cmd,
   filetypes = { 'gd', 'gdscript', 'gdscript3' },
-  root_dir = vim.fs.root('project.godot', '.git'),
+  root_markers = { 'project.godot', '.git' },
 }
 
 -- lua
@@ -51,9 +51,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
     local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 
+    -- hover
     vim.keymap.set('n', 'K', function()
       vim.lsp.buf.hover({ border = "single" })
     end, { buffer = 0 })
+
+    -- Better go to definition
+    if client.name ~= 'gdscript' then
+      vim.keymap.set('n', 'gd', "<C-]>", { buffer = 0 })
+    end
 
     -- Enable auto-completion (omnifunc only). Note: Use CTRL-Y to select an item. |complete_CTRL-Y|
     if client:supports_method('textDocument/completion') then
@@ -94,6 +100,12 @@ vim.api.nvim_create_user_command('LspStop',
     end
   }
 )
+
+vim.api.nvim_create_user_command('LspLog', function()
+  vim.cmd(string.format('tabnew %s', vim.lsp.get_log_path()))
+end, {
+  desc = 'Opens the Nvim LSP client log.',
+})
 
 vim.api.nvim_create_user_command("LspRestart",
   function(args)

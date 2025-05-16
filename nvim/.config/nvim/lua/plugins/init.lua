@@ -6,6 +6,8 @@ return {
   'tpope/vim-sleuth',
   'tpope/vim-surround',
 
+  { 'teatek/gdscript-extended-lsp.nvim', opts = {} },
+
   -- databases
   {
     'kristijanhusak/vim-dadbod-ui',
@@ -15,10 +17,6 @@ return {
     lazy = true,
     cmd = 'DBUI',
   },
-
-  -- prettier,
-  { 'sbdchd/neoformat', cmd = 'Neoformat' },
-
   {
     'reisub0/hot-reload.vim',
     ft = "dart",

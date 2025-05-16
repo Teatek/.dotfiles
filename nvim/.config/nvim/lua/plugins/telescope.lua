@@ -24,6 +24,7 @@ return {
     })
 
     require("telescope").load_extension("ui-select")
+    require("telescope").load_extension("gdscript-extended-lsp")
   end,
   init = function()
     local function project_files()
