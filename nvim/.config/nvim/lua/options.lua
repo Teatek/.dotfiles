@@ -4,7 +4,8 @@ vim.g.netrw_preview = 1
 
 vim.o.showmode = false
 vim.o.mouse = 'a'
-vim.o.laststatus = 2
+vim.o.laststatus = 3
+vim.o.winbar = '%=%m %f'
 vim.o.updatetime = 50
 vim.o.errorbells = false
 vim.o.relativenumber = true

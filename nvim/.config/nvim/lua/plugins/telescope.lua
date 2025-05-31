@@ -8,6 +8,7 @@ return {
     require("telescope").setup({
       defaults = {
         border = true,
+        file_ignore_patterns = { ".uid", ".import" },
       },
       pickers = {
         colorscheme = {

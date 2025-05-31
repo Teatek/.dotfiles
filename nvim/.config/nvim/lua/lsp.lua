@@ -59,6 +59,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Better go to definition
     if client.name ~= 'gdscript' then
       vim.keymap.set('n', 'gd', "<C-]>", { buffer = 0 })
+    else
+      vim.keymap.set('n', '<leader>D', ':Telescope gdscript-extended-lsp class<CR>')
     end
 
     -- Enable auto-completion (omnifunc only). Note: Use CTRL-Y to select an item. |complete_CTRL-Y|

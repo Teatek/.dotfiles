@@ -8,6 +8,12 @@ return {
 
   { 'teatek/gdscript-extended-lsp.nvim', opts = {} },
 
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {}
+  },
+
   -- databases
   {
     'kristijanhusak/vim-dadbod-ui',
