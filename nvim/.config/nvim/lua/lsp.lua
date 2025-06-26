@@ -61,6 +61,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.keymap.set('n', 'gd', "<C-]>", { buffer = 0 })
     else
       vim.keymap.set('n', '<leader>D', ':Telescope gdscript-extended-lsp class<CR>')
+      vim.keymap.set('n', '<leader>ff', "<cmd>lua require('telescope.builtin').find_files({search_file = '*.gd'})<CR>")
     end
 
     -- Enable auto-completion (omnifunc only). Note: Use CTRL-Y to select an item. |complete_CTRL-Y|
@@ -76,7 +77,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('my.lsp', { clear = false }),
         buffer = args.buf,
         callback = function()
-          vim.lsp.buf.format({ bufnr = args.buf, id = client.id, timeout_ms = 1000 })
+          vim.lsp.buf.format({ bufnr = args.buf, id = client.id, async = true })
         end,
       })
     end
