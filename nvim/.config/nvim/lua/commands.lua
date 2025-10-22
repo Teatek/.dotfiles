@@ -22,6 +22,18 @@ autocmd({ "BufWritePre" }, {
   command = [[%s/\s\+$//e]],
 })
 
+-- XML auto formating on save
+autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function()
+    if vim.bo.filetype == "xml" then
+      local pos = vim.api.nvim_win_get_cursor(0)
+      vim.cmd(":%!xmllint --format -")
+      vim.api.nvim_win_set_cursor(0, pos)
+    end
+  end,
+})
+
 -- automatically folding
 autocmd("BufWinEnter", {
   pattern = "*.*",

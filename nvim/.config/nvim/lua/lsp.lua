@@ -45,6 +45,12 @@ vim.lsp.config.lua_ls = {
   }
 }
 
+vim.lsp.config.jedi_language_server = {
+  cmd = { "jedi-language-server" },
+  filetypes = { "python" },
+  root_markers = { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", ".git" }
+}
+
 -- Attach lsp when it detect a lsp at the file
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('my.lsp', {}),
@@ -85,7 +91,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 -- Enable the following servers
-vim.lsp.enable({ 'lua_ls', 'gdscript' })
+vim.lsp.enable({ 'lua_ls', 'gdscript', 'jedi_language_server' })
 
 
 -- User command
