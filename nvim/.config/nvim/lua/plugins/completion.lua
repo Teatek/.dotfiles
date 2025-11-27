@@ -56,6 +56,9 @@ return {
 
     signature  = {
       enabled = true,
+      trigger = {
+        enabled = false
+      },
       window = {
         border = 'single'
       },

@@ -22,17 +22,6 @@ autocmd({ "BufWritePre" }, {
   command = [[%s/\s\+$//e]],
 })
 
--- XML auto formating on save
-autocmd("BufWritePre", {
-  pattern = "*",
-  callback = function()
-    if vim.bo.filetype == "xml" then
-      local pos = vim.api.nvim_win_get_cursor(0)
-      vim.cmd(":%!xmllint --format -")
-      vim.api.nvim_win_set_cursor(0, pos)
-    end
-  end,
-})
 
 -- automatically folding
 autocmd("BufWinEnter", {
@@ -53,6 +42,16 @@ autocmd("ColorScheme", {
   end
 })
 
+autocmd("OptionSet", {
+  pattern = "background",
+  callback = function()
+    if vim.o.background == 'light' then
+      vim.cmd [[colorscheme dayfox]]
+    else
+      vim.cmd [[colorscheme nightfox]]
+    end
+  end,
+})
 
 -- auto term to run single file
 vim.api.nvim_create_user_command(

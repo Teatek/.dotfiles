@@ -34,4 +34,10 @@ return {
       vim.keymap.set('n', '<C-w>m', ':MaximizerToggle<CR>', { desc = "Toggle maximize window" })
     end,
   },
+  {
+    'saghen/blink.indent',
+    --- @module 'blink.indent'
+    --- @type blink.indent.Config
+    -- opts = {},
+  },
 }

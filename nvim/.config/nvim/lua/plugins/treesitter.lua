@@ -28,5 +28,8 @@ return {
         additional_vim_regex_highlighting = false,
       },
     }
+    require('treesitter-context').setup {
+      max_lines = 3, -- Max sticky header size
+    }
   end
 }
