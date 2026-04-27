@@ -28,7 +28,7 @@ vim.opt.cursorline = true
 vim.opt.cursorlineopt = "number"
 
 vim.o.list = true
-vim.o.listchars = 'tab:>─,eol:↲'
+vim.o.listchars = 'tab:>─,nbsp:+,eol:↲'
 
 vim.o.foldcolumn = 'auto'
 vim.o.signcolumn = 'auto:2'
