@@ -27,6 +27,9 @@ vim.o.smartcase = true
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = "number"
 
+-- For markdown
+vim.o.conceallevel = 2
+
 vim.o.list = true
 vim.o.listchars = 'tab:>─,nbsp:+,eol:↲'
 
