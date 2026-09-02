@@ -1,7 +1,4 @@
 -- global
-vim.g.netrw_winsize = 15
-vim.g.netrw_preview = 1
-
 vim.o.showmode = false
 vim.o.mouse = 'a'
 vim.o.laststatus = 3
@@ -24,8 +21,29 @@ vim.o.undofile = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
-vim.opt.cursorline = true
-vim.opt.cursorlineopt = "number"
+vim.o.winborder = 'rounded'
+
+-- Fix floating window color
+local set_hl_for_floating_window = function()
+    vim.api.nvim_set_hl(0, 'NormalFloat', {
+        link = 'Normal',
+    })
+    vim.api.nvim_set_hl(0, 'FloatBorder', {
+        bg = 'none',
+    })
+end
+
+set_hl_for_floating_window()
+
+vim.api.nvim_create_autocmd('ColorScheme', {
+    pattern = '*',
+    desc = 'Avoid overwritten by loading color schemes later',
+    callback = set_hl_for_floating_window,
+})
+
+-- Highlight on cursor position (number)
+vim.o.cursorline = true
+vim.o.cursorlineopt = "number"
 
 -- For markdown
 vim.o.conceallevel = 2
