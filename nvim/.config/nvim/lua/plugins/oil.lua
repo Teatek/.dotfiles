@@ -3,19 +3,20 @@ return {
   opts = {},
   -- Optional dependencies
   dependencies = { "nvim-tree/nvim-web-devicons" },
-  config = function()
-    require("oil").setup {
-      keymaps = {
-        ["cd"] = "actions.cd",
-      },
-      view_options = {
-        show_hidden = true,
-      },
-    }
-
+  init = function()
     -- Open parent directory in current window
     vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+    vim.api.nvim_create_user_command("Sex", function(opts)
+      local my_dir = opts.args ~= "" and opts.args or nil
 
-    vim.api.nvim_create_user_command("Ex", "Oil <args>", { nargs = "?", complete = "dir" })
+      require("oil").open(my_dir, {
+        preview = {
+          horizontal = true,
+        },
+      })
+    end, {
+    nargs = "?",
+    complete = "dir",
+  })
   end,
 }

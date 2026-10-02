@@ -5,6 +5,7 @@ return {
   'EdenEast/nightfox.nvim',
   'tpope/vim-sleuth',
   'tpope/vim-surround',
+  'tpope/vim-abolish',
 
   { 'teatek/gdscript-extended-lsp.nvim', opts = {} },
 
